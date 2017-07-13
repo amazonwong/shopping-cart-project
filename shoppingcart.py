@@ -32,16 +32,22 @@ products = [
 # ... (yours will actually be some working python code)
 #
 
-product_id = []
+#product_id = input("Please input a valid product identifer, or 'DONE' if there are no items: ")
 
-product_id = input("Please input a valid product identifer, or 'DONE' if there are no items: ")
+#print("The product id is " + str(product_id))
 
-print("The product id is " + str(product_id))
+product_ids = []
+while True:
+    product_id = input("Please input a valid product identifer, or 'DONE' if there are no items: ")
+    if product_id == "DONE":
+        break
+    else:
+        print("The product id is " + str(product_id))
+    product_ids.append(product_id)
 
-#while product_ids ==
-    #product_ids = input("Please input a product identifer, or 'DONE' if there are no items: ")
-    #product_ids.append(product_id)
-    #product_ids = input('Press y if you want to enter more lines: ')
+print("OUTSIDE THE LOOP")
+
+print(product_ids)
 
 
 product_ids = [1, 8, 6, 16, 6] # temporary list of valid ids for testing purposes
