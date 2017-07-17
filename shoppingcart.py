@@ -1,5 +1,9 @@
 #SHOPPING CART
 
+import code
+import operator
+
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -23,14 +27,7 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # Products based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-#
-# some commented-out loop
-# ... representing the result of the first checkpoint (if you did it)
-# ... which accepts user inputs
-# ... and prints the results
-# ... and which we are temporarily ignoring
-# ... (yours will actually be some working python code)
-#
+
 
 #product_id = input("Please input a valid product identifer, or 'DONE' if there are no items: ")
 
@@ -45,13 +42,30 @@ while True:
         print("The product id is " + str(product_id))
     product_ids.append(product_id)
 
-print("OUTSIDE THE LOOP")
+print("SHOPPING CART ITEM IDENTIFIERS INCLUDE:", product_ids)
 
-print(product_ids)
+#
 
+print("------------")
+
+product_ids = sorted(products, key=operator.itemgetter('id'))
+
+for product_id in product_ids:
+    price_usd = ' (${0:.2f})'.format(product_id["price"])
+    print(" + " + product_id["name"] + price_usd)
+
+
+#
+# some commented-out loop
+# ... representing the result of the first checkpoint (if you did it)
+# ... which accepts user inputs
+# ... and prints the results
+# ... and which we are temporarily ignoring
+# ... (yours will actually be some working python code)
+#
 
 product_ids = [1, 8, 6, 16, 6] # temporary list of valid ids for testing purposes
 
-print("SHOPPING CART ITEM IDENTIFIERS INCLUDE:", product_ids)
+
 
 #TODO: perform product look-ups here!
