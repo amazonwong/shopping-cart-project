@@ -55,7 +55,7 @@ print("WRONG GROCERY STORE")
 print("-------------------------------")
 print("Web: www.wrongstore.com")
 print("Phone: 1.614.316.7890")
-print("Checkout Time: ", datetime.datetime.now().strftime("%Y-%m-%d %H:%m:%S"))
+print("Checkout Time: ", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 print("-------------------------------")
 print("Shopping Cart Items:")
