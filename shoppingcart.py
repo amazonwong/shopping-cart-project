@@ -2,6 +2,7 @@
 
 import code
 import operator
+import datetime
 
 
 products = [
@@ -27,32 +28,52 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # Products based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-
-
-#product_id = input("Please input a valid product identifer, or 'DONE' if there are no items: ")
-
-#print("The product id is " + str(product_id))
+#
+# CAPTURE USER INPUTS
+#
 
 product_ids = []
+
 while True:
-    product_id = input("Please input a valid product identifer, or 'DONE' if there are no items: ")
+    product_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
     if product_id == "DONE":
         break
     else:
-        print("The product id is " + str(product_id))
-    product_ids.append(product_id)
+        product_ids.append(int(product_id))
 
-print("SHOPPING CART ITEM IDENTIFIERS INCLUDE:", product_ids)
+def lookup_product_by_id(product_id):
+    matching_products = [product for product in products if product["id"] == product_id]
+    return matching_products[0] # because the line above gives us a list and we want to return a single item.
 
 #
+# PRINT RECEIPT
+#
 
-print("------------")
+running_total = 0
+print("-------------------------------")
+print("WRONG GROCERY STORE")
+print("-------------------------------")
+print("Web: www.wrongstore.com")
+print("Phone: 1.614.316.7890")
+print("Checkout Time: ", datetime.datetime.now().strftime("%Y-%m-%d %H:%m:%S"))
 
-product_ids = sorted(products, key=operator.itemgetter('id'))
-
+print("-------------------------------")
+print("Shopping Cart Items:")
 for product_id in product_ids:
-    price_usd = ' (${0:.2f})'.format(product_id["price"])
-    print(" + " + product_id["name"] + price_usd)
+    product = lookup_product_by_id(product_id)
+    running_total += product["price"]
+    price_usd = ' (${0:.2f})'.format(product["price"])
+    print(" + " + product["name"] + price_usd)
+
+print("-------------------------------")
+print("Subtotal:", '${0:.2f}'.format(running_total))
+tax = running_total * 0.08875
+print("Plus NYC Sales Tax (8.875%):", '${0:.2f}'.format(tax))
+total = running_total + tax
+print("Total:", '${0:.2f}'.format(total))
+
+print("-------------------------------")
+print("Thanks for your business! Please come again.")
 
 
 #
@@ -64,7 +85,7 @@ for product_id in product_ids:
 # ... (yours will actually be some working python code)
 #
 
-product_ids = [1, 8, 6, 16, 6] # temporary list of valid ids for testing purposes
+#product_ids = [1, 8, 6, 16, 6] # temporary list of valid ids for testing purposes
 
 
 
